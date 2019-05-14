@@ -1,0 +1,36 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+
+phases:
+  install:
+    commands:
+      - echo Installing Mocha...
+      - npm install -g mocha
+    
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+      - npm install unit.js
+  build:
+    commands:
+      - echo Build started on `date`       
+      - echo Compiling the Node.js code       
+      - mocha test# - command
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - app.js
+    - package.json
+    - views/index.html
+    - views/sharks.html
+    - views/css/*
